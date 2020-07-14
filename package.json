@@ -1,0 +1,25 @@
+{
+  "name": "traversal-handler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "prepublish": "tsc",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gerandon/traversal-handler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gerandon/traversal-handler/issues"
+  },
+  "homepage": "https://github.com/Gerandon/traversal-handler#readme",
+  "devDependencies": {
+    "typescript": "^3.9.6"
+  }
+}
