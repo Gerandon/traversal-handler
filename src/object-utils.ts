@@ -1,37 +1,50 @@
 import {
     isArray as _isArray,
-    isPlainObject as _isPlainObject,
-    transform as _transform,
-    isNil as _isNil,
-    isEmpty as _isEmpty,
-    isDate as _isDate,
     isBoolean as _isBoolean,
+    isDate as _isDate,
+    isEmpty as _isEmpty,
+    isNil as _isNil,
     isNumber as _isNumber,
+    isPlainObject as _isPlainObject,
+    keys as _keys,
+    transform as _transform,
 } from 'lodash';
+import moment = require("moment");
 
-export function removeEmptyProperties(cleanable: any): any {
-    let result = cleanable;
-    if (_isArray(cleanable)) {
-        result = (cleanable as any[]).reduce((acc, item) => {
-            const clonedProp = removeEmptyProperties(item);
-            if (isNotEmpty(clonedProp)) {
-                acc.push(clonedProp);
+export function formatDateInstances(object: any, format?: string): any {
+    let result = object;
+    if (_isPlainObject(object)) {
+        result = _transform(object, (acc: any, value, key) => {
+            acc[key] = formatDateInstances(value);
+            if (value instanceof Date) {
+                acc[key] = moment(value).format(format);
             }
-            return acc;
-        }, []);
-    } else if (_isPlainObject(cleanable)) {
-        result = _transform(
-            cleanable,
-            (acc: any, value, key) => {
-                const clonedProp = removeEmptyProperties(value);
-                if (isNotEmpty(clonedProp)) {
-                    acc[key] = clonedProp;
-                }
-            },
-            {}
-        );
+        }, {});
     }
     return result;
+}
+
+export function clear(jsonObject: any): any {
+    const newJson: any = {};
+    _keys(jsonObject).forEach((key: string) => {
+        if (isNotEmpty(jsonObject[key])) {
+            if (_isPlainObject(jsonObject[key])) {
+                newJson[key] = clear(jsonObject[key]);
+            } else if (_isArray(jsonObject[key])) {
+                newJson[key] = [];
+                jsonObject[key].forEach((item: any) => {
+                    if (!_isPlainObject(item)) {
+                        newJson[key].push(item);
+                    } else {
+                        newJson[key].push(clear(item));
+                    }
+                });
+            } else {
+                newJson[key] = jsonObject[key];
+            }
+        }
+    });
+    return newJson;
 }
 
 function isNotEmpty(value: any): boolean {
@@ -40,4 +53,8 @@ function isNotEmpty(value: any): boolean {
             || (_isDate(value) && !isNaN((value as Date).getTime()))
             || _isBoolean(value) || _isNumber(value)
         ));
+}
+
+function isEmpty(value: any): boolean {
+    return !isNotEmpty(value);
 }

@@ -2,13 +2,16 @@
   "name": "traversal-handler",
   "version": "1.0.7",
   "description": "",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "prepublish": "tsc",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
+  "files": [
+    "/lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gerandon/traversal-handler.git"
@@ -25,6 +28,7 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0"
   }
 }
