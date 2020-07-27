@@ -48,6 +48,14 @@ In this package, there are a few methods, that help cleanin or modifying objects
             <td>A simple method for cleaning your object. That means, this function recursively goes across all the properties of the given object and removes it's empty properties. (eg. null, undefined, empty array etc.)</td>
         </tr>
         <tr>
+            <td>isNotEmpty</td>
+            <td>Determine wether an object is empty or not, with checking it's type, value etc. (with lodash)</td>
+        </tr>
+        <tr>
+            <td>isEmpty</td>
+            <td>The opposite (with a simple negate) of 'isNotEmpty'</td>
+        </tr>
+        <tr>
             <td>formatDateProperties</td>
             <td>A method that helps formatting Date type plain objects in any depth, with a specific format</td>
         </tr>

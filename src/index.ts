@@ -1,5 +1,10 @@
 import {getParent, traverse} from "./tree-traversal";
-import { formatDateInstances, clear } from "./object-utils";
+import {
+    formatDateInstances,
+    clear,
+    isEmpty as _isEmpty,
+    isNotEmpty as _isNotEmpty
+} from "./object-utils";
 
 /**
  * Iterate trough the tree recursively, with the option of modifying every element
@@ -34,6 +39,21 @@ export const parentOf = (object: any, tree: any[], currentIdentifier?: string, p
  * @param object
  */
 export const clearObject = (object: any) => clear(object);
+
+/**
+ * Checks wether the parameter object is empty or not
+ * with lodash methods: isNil, isEmpty, isDate && isNaN etc.
+ *
+ * @param object
+ */
+export const isNotEmpty = (object: any) => _isNotEmpty(object);
+
+/**
+ * Negate of 'isNotEmpty'
+ *
+ * @param object
+ */
+export const isEmpty = (object: any) => _isEmpty(object);
 
 /**
  * Formatting Date type instances in every depth

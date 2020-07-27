@@ -47,7 +47,7 @@ export function clear(jsonObject: any): any {
     return newJson;
 }
 
-function isNotEmpty(value: any): boolean {
+export function isNotEmpty(value: any): boolean {
     return (!_isNil(value)
         && (!_isEmpty(value)
             || (_isDate(value) && !isNaN((value as Date).getTime()))
@@ -55,6 +55,6 @@ function isNotEmpty(value: any): boolean {
         ));
 }
 
-function isEmpty(value: any): boolean {
+export function isEmpty(value: any): boolean {
     return !isNotEmpty(value);
 }
