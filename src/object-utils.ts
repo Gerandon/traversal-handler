@@ -27,12 +27,16 @@ export function formatDateInstances(object: any, format?: string): any {
 export function clear(jsonObject: any): any {
     const newJson: any = {};
     _keys(jsonObject).forEach((key: string) => {
-        if (isNotEmpty(jsonObject[key])) {
-            if (_isPlainObject(jsonObject[key])) {
-                newJson[key] = clear(jsonObject[key]);
-            } else if (_isArray(jsonObject[key])) {
+        const currentVal = jsonObject[key];
+        if (isNotEmpty(currentVal)) {
+            if (_isPlainObject(currentVal)) {
+                const tempVal = clear(currentVal);
+                if (isNotEmpty(tempVal)) {
+                    newJson[key] = tempVal;
+                }
+            } else if (_isArray(currentVal)) {
                 newJson[key] = [];
-                jsonObject[key].forEach((item: any) => {
+                currentVal.forEach((item: any) => {
                     if (!_isPlainObject(item)) {
                         newJson[key].push(item);
                     } else {
@@ -40,7 +44,7 @@ export function clear(jsonObject: any): any {
                     }
                 });
             } else {
-                newJson[key] = jsonObject[key];
+                newJson[key] = currentVal;
             }
         }
     });
