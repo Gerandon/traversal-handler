@@ -9,7 +9,9 @@ import {
     keys as _keys,
     transform as _transform,
 } from 'lodash';
-import moment = require("moment");
+// @ts-ignore
+import * as momentImported from 'moment';
+const moment = momentImported;
 
 export function formatDateInstances(object: any, format?: string): any {
     let result = object;

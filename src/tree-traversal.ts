@@ -3,12 +3,13 @@ import {
     isArray as _isArray,
     cloneDeep as _cloneDeep,
     clone as _clone,
+    find as _find,
 } from 'lodash';
 
 export function traverse(tree: any | any[], modifyHandler: (object: any) => any, childrenProp: string = 'children') {
     const tempTree = _cloneDeep(tree);
     tempTree.forEach((object: any) => {
-        const childArray = _keys(object).map(key => object[key]).find(_isArray);
+        const childArray = _find(_keys(object).map(key => object[key]), _isArray);
         const modifiedObject = modifyHandler(object);
         // Bypass immutable assignment
         _keys(object).forEach((key) => {
