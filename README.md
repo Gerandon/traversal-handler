@@ -35,6 +35,11 @@ Where the `modifiedTree` instance holds the updated version of the input paramet
 
 There is an option for finding a specific Object's parent inside our tree. `parentOf` method iterates recursively across the given tree and finds the parent of our object, with breaking the recursion after completion.
 
+#### From version 1.1.x
+In version 1.1.x, you have the option, to give the `treeTraversal` method a third (`inputModifyHandler`) and fourth (`childrenProp`) parameter.
+For instance, imagine having a `modify` method outside your class, that you want to pass to the handler (named `inputModifyHandler`) with the local callback method. Now you can do this as well, with the third parameter.
+The fourth parameter is a `string` type parameter (`childrenProp`) for redefining the children property name (It is still `children` in default).
+
 ## Object utils
 In this package, there are a few methods, that help cleanin or modifying objects easily, without defining complex logic.
 <table>

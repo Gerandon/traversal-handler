@@ -6,11 +6,14 @@ import {
     find as _find,
 } from 'lodash';
 
-export function traverse(tree: any | any[], modifyHandler: (object: any) => any, childrenProp: string = 'children') {
+export function traverse(tree: any | any[],
+                         modifyHandler: (object: any) => any,
+                         inputModifyLeafRight?: (object: any) => any,
+                         childrenProp: string = 'children') {
     const tempTree = _cloneDeep(tree);
-    tempTree.forEach((object: any) => {
-        const childArray = _find(_keys(object).map(key => object[key]), _isArray);
-        const modifiedObject = modifyHandler(object);
+    tree.forEach((object: any) => {
+        const childArray = _keys(object).map(key => object[key]).find(_isArray);
+        const modifiedObject = modifyHandler ? modifyHandler(object) : (inputModifyLeafRight ? inputModifyLeafRight(object) : object);
         // Bypass immutable assignment
         _keys(object).forEach((key) => {
             if (modifiedObject) {
@@ -21,11 +24,11 @@ export function traverse(tree: any | any[], modifyHandler: (object: any) => any,
         });
         const continueRecursion =
             modifiedObject && (!modifiedObject.hasOwnProperty('breakRecursion') || !modifiedObject.breakRecursion);
-        if (childArray && childArray.length && modifiedObject && continueRecursion) {
-            object[childrenProp] = traverse(childArray, modifyHandler, childrenProp);
+        if (childArray && childArray.length && continueRecursion) {
+            object[childrenProp] = traverse(childArray, modifyHandler, inputModifyLeafRight, childrenProp);
         }
     });
-    return tempTree;
+    return tree;
 }
 
 export function getParent(current: any, tree: any | any[], identifier: string = 'id', parentIdentifier: string = 'parentId') {

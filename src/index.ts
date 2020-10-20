@@ -3,7 +3,7 @@ import {
     formatDateInstances,
     clear,
     isEmpty as _isEmpty,
-    isNotEmpty as _isNotEmpty
+    isNotEmpty as _isNotEmpty,
 } from "./object-utils";
 
 /**
@@ -13,6 +13,7 @@ import {
  *      modifiable tree
  * @param modifyHandler
  *      callback method that handles the modification
+ * @param inputModifyHandler
  * @param childrenProperty
  *      property that identifies the childrens of an objects
  *      (default is 'children')
@@ -20,8 +21,9 @@ import {
 export const treeTraversal = (
     tree: any | any[],
     modifyHandler: (object: any) => any,
+    inputModifyHandler?: (object: any) => any,
     childrenProperty?: string
-) => clear(traverse(tree, modifyHandler, childrenProperty));
+) => clear(traverse(tree, modifyHandler, inputModifyHandler, childrenProperty));
 
 /**
  * Find the parent of an Object in the specified tree
