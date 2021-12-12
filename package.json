@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/Gerandon/traversal-handler.git"
   },
-  "keywords": [],
+  "keywords": ["tree", "traversal", "children", "node", "nodes", "node traversal", "object traversal", "utility", "isEmpty", "format object"],
   "author": "",
   "license": "ISC",
   "bugs": {
