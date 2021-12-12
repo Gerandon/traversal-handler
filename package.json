@@ -1,6 +1,6 @@
 {
   "name": "traversal-handler",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -16,7 +16,18 @@
     "type": "git",
     "url": "git+https://github.com/Gerandon/traversal-handler.git"
   },
-  "keywords": ["tree", "traversal", "children", "node", "nodes", "node traversal", "object traversal", "utility", "isEmpty", "format object"],
+  "keywords": [
+    "tree",
+    "traversal",
+    "children",
+    "node",
+    "nodes",
+    "node traversal",
+    "object traversal",
+    "utility",
+    "isEmpty",
+    "format object"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
