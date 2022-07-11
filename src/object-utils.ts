@@ -64,3 +64,9 @@ export function isNotEmpty(value: any): boolean {
 export function isEmpty(value: any): boolean {
     return !isNotEmpty(value);
 }
+
+export function _formatObject(object: any, actual: any) {
+    return _transform(object, (acc: any, value, key) => {
+        acc[key] = actual(object, key, value);
+    }, {});
+}

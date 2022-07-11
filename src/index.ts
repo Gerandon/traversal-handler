@@ -4,6 +4,7 @@ import {
     clear,
     isEmpty as _isEmpty,
     isNotEmpty as _isNotEmpty,
+    _formatObject,
 } from "./object-utils";
 
 /**
@@ -64,3 +65,11 @@ export const isEmpty = (object: any) => _isEmpty(object);
  * @param format
  */
 export const formatDateProperties = (object: any, format?: string) => formatDateInstances(object, format);
+
+/**
+ * Formatting Date type instances in every depth
+ *
+ * @param object
+ * @param actual
+ */
+export const formatObject = (object: any, actual: (object: any, key: any, value: any) => any) => _formatObject(object, actual);

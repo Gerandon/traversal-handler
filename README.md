@@ -64,5 +64,9 @@ In this package, there are a few methods, that help cleanin or modifying objects
             <td>formatDateProperties</td>
             <td>A method that helps formatting Date type plain objects in any depth, with a specific format</td>
         </tr>
+        <tr>
+            <td>formatObject</td>
+            <td>Helps formatting an object in a way like reduce does that to array, with making access for keys, values and concrete object runtime</td>
+        </tr>
     </tbody>
 </table>
